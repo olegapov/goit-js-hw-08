@@ -1,0 +1,2 @@
+:root{--timing-function:cubic-bezier(.4,0,.2,1);--animation-duration:250ms}ul{list-style:none}.gallery{flex-wrap:wrap;justify-content:center;gap:24px;margin:0;padding:24px 156px;display:flex}.gallery-image{width:360px;height:200px;flex-shrink:0}.gallery-image:hover{transform:scale(1.04)}
+/*# sourceMappingURL=index.5f8365c6.css.map */
