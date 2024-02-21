@@ -72,7 +72,7 @@ const gallery = document.querySelector('.gallery');
 const markup = images.map(
   item =>
     `<li class="gallery-item">
-  <a class="gallery-link" href="">
+  <a class="gallery-link" href="${item.original}">
     <img
       class="gallery-image"
       src="${item.preview}"
@@ -84,25 +84,21 @@ const markup = images.map(
 );
 
 gallery.insertAdjacentHTML('beforeend', markup.join(''));
+let lightbox;
+gallery.addEventListener('click', event => {
+  event.preventDefault();
 
-gallery.addEventListener('click', e => {
-  if (e.target === e.currentTarget) return;
-  const liElem = e.target.closest('li');
-  const { original } = liElem;
-  const instance = basicLightbox.create(
-    `
-    <div class="modal box">
-        <img
-        src="${original}"
-        />
-    </div>
-`,
-    {
-      onShow: instance => {},
-      onClose: instance => {},
+  if (event.target.classList.contains('gallery-image')) {
+    const originalSrc = event.target.dataset.source;
+
+    if (!lightbox) {
+      lightbox = basicLightbox.create(
+        `<img width="1400" height="900" src="${originalSrc}">`
+      );
+    } else {
+      lightbox.element().querySelector('img').src = originalSrc;
     }
-  );
 
-  instance.show();
+    lightbox.show();
+  }
 });
-// console.log('hello');
